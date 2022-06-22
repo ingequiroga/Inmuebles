@@ -42,12 +42,12 @@ export default {
     },
     methods:{
        async Validar() {
-       let user = {
+       let datos = {
                name: this.usuario,
                pass: this.pass
              }
-
-        await this.Login(user)
+        console.log(datos);
+        await this.ValidarDatos(datos)
         if (!this.isLoged) {
           this.showModal = true
         }
@@ -57,7 +57,7 @@ export default {
 
       },
        ...mapActions('login',{
-        Login: 'login'
+        ValidarDatos: 'login'
         }) 
     }
 }
