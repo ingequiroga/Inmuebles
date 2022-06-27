@@ -1,3 +1,4 @@
+
 <template>
 <div class="text-center bodysi">
         <main class="form-signin">
@@ -23,15 +24,20 @@
     <p class="mt-5 mb-3 text-muted">&copy; 2022–2023</p>
   </form>
 </main>
+<ModalA v-if="showModal" @close="showModal = false" :Mensaje="MsgError" />
 </div>
 
 </template>
 
 <script>
-
-import {mapActions} from 'vuex'
+/* eslint-disable */
+import {mapActions, mapState} from 'vuex'
+import ModalA from '../../shared/components/Modal-Acceso.vue';
 
 export default {
+       computed:{
+     ...mapState('login',['isLoged','MsgError'])
+      },
      data(){
         return{
              usuario:'',
@@ -46,20 +52,23 @@ export default {
                name: this.usuario,
                pass: this.pass
              }
-        console.log(datos);
+   
         await this.ValidarDatos(datos)
         if (!this.isLoged) {
           this.showModal = true
         }
         else{
-          this.$router.push('Cotizador')
+          this.$router.push('panel')
         }
 
       },
        ...mapActions('login',{
         ValidarDatos: 'login'
         }) 
-    }
+    },
+    components:{
+      ModalA
+    },
 }
 </script>
 

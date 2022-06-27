@@ -7,6 +7,12 @@ header('Access-Control-Allow-Methods: POST');
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    // The request is using the POST method
+    header("HTTP/1.1 200 OK");
+    return;
+
+}
 
 // get database connection
 include_once '../config/database.php';
@@ -43,7 +49,7 @@ $data = json_decode(file_get_contents("php://input"));
             "IdPersona" => $user->IdPersona,
             "IdRol" => $user->IdRol,
             "message" => "Acceso concedido",
-     
+            "error" => false
         );
          // set response code - 201 created
          http_response_code(201);
@@ -53,20 +59,21 @@ $data = json_decode(file_get_contents("php://input"));
      }
      else{
 
-        // $user_arr = array(
-        //     "idUsuario" =>  '',
-        //     "Email" => '',
-        //     "IdPersona" => '',
-        //     "IdRol" => '',
-        //     "message" => "usuario o pass incorrectos.",
+        $user_arr = array(
+            "idUsuario" =>  '',
+            "Email" => '',
+            "IdPersona" => '',
+            "IdRol" => '',
+            "message" => "usuario o pass incorrectos.",
+            "error" => true
      
-        // );
+        );
          // set response code - 503 service unavailable
-         http_response_code(503);
+         //http_response_code(503);
  
          // tell the user
-        
-         echo json_encode(array("message" => "usuario o pass incorrectos."));
+         echo json_encode($user_arr);
+        // echo json_encode(array("message" => "usuario o pass incorrectos."));
      }
 
  }

@@ -11,6 +11,7 @@ class User{
     public $Pass;
     public $IdPersona;
     public $IdRol;
+  
     
     
   
@@ -102,6 +103,7 @@ class User{
     //  // echo $stmt->rowCount();
     //   return true;
     //   }
+    if($stmt->rowCount() > 0){ 
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
     $this->idUsuario = $row['idUsuario'];
@@ -109,6 +111,7 @@ class User{
     $this->IdPersona = $row['IdPersona'];
     $this->IdRol = $row['IdRol'];
 
+    }
       //return $stmt;
          
       }

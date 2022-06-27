@@ -1,15 +1,31 @@
 import validarUsuario from '../../helpers/validarUsuario'
+import setLocalValues from '../../helpers/setLocalValues'
+import guardarInmueblehelper from '../../helpers/guardarInmueble'
 
 export const login = async ({commit},datos) => {   
-    console.log(commit);
     const {data} = await validarUsuario(datos)
-    console.log(data);
      if (data.error) {
-       //commit('limpiarUser')
-       //commit('SetError',data.mensajeError)
+       commit('limpiarUser')
+       commit('SetError',data.message)
    }
    else{
-     //setLocalValues("credenciales",data,180000)
-//     //commit('logearUser',data.usuario)
+     setLocalValues("credenciales",data,180000)
+     commit('logearUser',data.usuario)
    }
+}
+
+export const guardarInmueble = async ({commit},inmueble) => {
+  console.log(inmueble);
+  
+   const {message,error} = await guardarInmueblehelper(inmueble)
+   console.log(message);
+   console.log(commit);
+   console.log(error);
+  if(error){
+    commit('SetError',message)
+  }   
+  else{
+    console.log(message);
+    commit('setInmueble',inmueble)
+  } 
 }
