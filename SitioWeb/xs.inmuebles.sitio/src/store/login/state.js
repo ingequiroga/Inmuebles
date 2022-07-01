@@ -1,7 +1,12 @@
 export default () => ({   
-    user:{},
+    user:{
+      email:'',
+      idpersona:'',
+      idrol:''
+    },
     isLoged: false,
     MsgError: '',
+    Error: false,
     recContrasenia:{
       mensaje:'',
       mostrar: false,

@@ -2,10 +2,10 @@
     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
       <div class="position-sticky pt-3">
         <ul class="nav flex-column">
-          <li class="nav-item">
-            <router-link class="nav-link" to="/panel">
+          <li class="nav-item" v-if="user.idrol==1">
+            <router-link class="nav-link" to="/catalogos">
                <span data-feather="home"></span>
-              Usuarios
+              Catalogos
             </router-link>
           </li>
           <li class="nav-item">
@@ -21,10 +21,10 @@
             </router-link>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="users"></span>
-              Carga Masiva
-            </a>
+              <router-link class="nav-link" to="/carga">
+               <span data-feather="shopping-cart"></span>
+               Carga Masiva
+            </router-link>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">
@@ -44,7 +44,11 @@
 </template>
 
 <script>
+import {mapState} from 'vuex'
 export default {
+    computed:{
+     ...mapState('login',['user'])
+      },
 
 }
 </script>

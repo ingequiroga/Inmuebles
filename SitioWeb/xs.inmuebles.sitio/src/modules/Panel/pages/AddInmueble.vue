@@ -48,12 +48,9 @@
           <div class="col-md-4">
               <label class="campo" >Etapa actual</label>
                <select v-model="inmueble.etapaAct" class="form-select">
-                <option value=1>Viable</option>
-                <option value=2>Compra en proceso</option>
-                <option value=3>En negociación</option>
-                 <option value=4>En Juicio</option>
-                <option value=5>En cartera propia</option>
-                <option value=6>Vendido</option>
+               <option v-for="etapa in catalogos[1]" :value="etapa.Id" :key="etapa.Id">
+                {{etapa.Nombre}}
+               </option>
                 </select>
           </div>
            
@@ -70,21 +67,18 @@
                 <div class="row mt-4">
             <div class="col-md-4">
               <label class="campo" >Estado</label>
-               <select v-model="inmueble.estado" class="form-select">
-                <option value=1>Guanajuato</option>
-                <option value=2>Jalisco</option>
-                <option value=3>Michoacan</option>
-                 <option value=4>Queretaro</option>
-                <option value=5>Yucatan</option>
-                <option value=6>Nuevo Leon</option>
+               <select v-model="selEstado" class="form-select">
+                    <option v-for="(estado,i) in catalogos[0]" :value="estado.Id" :key="i">
+                   {{estado.Nombre}}
+                    </option>
               </select>
           </div>
            <div class="col-md-4">
               <label class="campo" >Municipio</label>
                <select v-model="inmueble.municipio" class="form-select">
-                <option value=1>Leon</option>
-                <option value=2>Lagos de Moreno</option>
-                <option value=3>Aguascalientes</option>
+                <option v-for="(municipio,i) in catalogos[2]" :value="municipio.Id" :key="i">
+                   {{municipio.Nombre}}
+                    </option>
               </select>
           </div>
 
@@ -154,14 +148,19 @@
       
 
         </div>
-
+    <Modal v-if="showModal" @close="showModal = false" :Mensaje="Mensg" />
   </div>
 </template>
 
 <script>
-import {mapActions} from 'vuex'
+import axios from 'axios'
+import {mapActions,mapState} from 'vuex'
+import Modal from '../../shared/components/Modal-Acceso.vue';
 
 export default {
+   computed:{
+     ...mapState('login',['Error','MsgError'])
+      },
   data(){
     return{
       inmueble:{
@@ -184,18 +183,60 @@ export default {
         montoVenta: 0,
         numExpJud: '',
         comExpJud: ''
-      }
+      },
+      catalogos:[],
+      selEstado:null,
+      showModal: false,
+      Mensg: ''
     }
   },
 methods:{
   async guardar(){
       await this.Guardar(this.inmueble)
-
+       if (!this.Error) {
+          this.showModal = true
+        }
+  },
+  getCatalogos(){
+    axios.get('http://localhost/api/catalogos/readall.php')
+    .then((res) => {
+       if (res.data) {
+          const {datos} = res.data
+          this.catalogos = datos                               
+                            }
+    });
+  },
+  getMunicipios(idestado){
+     axios.post('http://localhost/api/municipios/obtporestados.php',
+     {
+        estado: idestado,
+        headers: [
+        { 'Content-Type': "application/json; charset=utf-8" }
+      ]
+     }).then((res) => {
+      console.log(res);
+      //  if (res.data) {
+      //     const {datos} = res.data
+      //     this.catalogos = datos                               
+      //                       }
+    });
   },
    ...mapActions('login',{
         Guardar: 'guardarInmueble'
         }) 
-}
+},
+watch:{
+    selEstado(event){
+      //console.log(event);
+      this.getMunicipios(event)
+    }
+},
+mounted(){
+  this.getCatalogos()
+},
+components:{
+      Modal
+},
 }
 </script>
 

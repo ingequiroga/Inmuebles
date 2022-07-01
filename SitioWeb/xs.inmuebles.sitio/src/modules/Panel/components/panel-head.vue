@@ -4,7 +4,7 @@
   
   <div class="navbar-nav">
     <div class="nav-item text-nowrap">
-      <a class="nav-link px-3" href="#">Sign out</a>
+      <a class="nav-link px-3" @click="CerrarSesion()">Sign out</a>
     </div>
   </div>
 </header>
@@ -12,7 +12,12 @@
 
 <script>
 export default {
-
+methods:{
+  CerrarSesion(){
+        localStorage.clear()
+        this.$router.push('/')
+      }
+}
 }
 </script>
 
