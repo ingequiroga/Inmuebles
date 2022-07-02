@@ -148,18 +148,18 @@
       
 
         </div>
-    <Modal v-if="showModal" @close="showModal = false" :Mensaje="Mensg" />
+    <Modal v-if="showModal" @close="showModal = false" :Mensaje="Msg" />
   </div>
 </template>
 
 <script>
 import axios from 'axios'
 import {mapActions,mapState} from 'vuex'
-import Modal from '../../shared/components/Modal-Acceso.vue';
+import Modal from '../../shared/components/Modal-Confirm.vue';
 
 export default {
    computed:{
-     ...mapState('login',['Error','MsgError'])
+     ...mapState('panel',['Error','Msg'])
       },
   data(){
     return{
@@ -187,7 +187,6 @@ export default {
       catalogos:[],
       selEstado:null,
       showModal: false,
-      Mensg: ''
     }
   },
 methods:{
@@ -195,6 +194,7 @@ methods:{
       await this.Guardar(this.inmueble)
        if (!this.Error) {
           this.showModal = true
+          this.inmueble = {}
         }
   },
   getCatalogos(){
@@ -221,14 +221,14 @@ methods:{
       //                       }
     });
   },
-   ...mapActions('login',{
+   ...mapActions('panel',{
         Guardar: 'guardarInmueble'
         }) 
 },
 watch:{
     selEstado(event){
-      //console.log(event);
-      this.getMunicipios(event)
+      console.log(event);
+     // this.getMunicipios(event)
     }
 },
 mounted(){

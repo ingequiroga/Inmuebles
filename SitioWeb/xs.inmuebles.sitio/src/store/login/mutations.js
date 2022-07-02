@@ -11,8 +11,8 @@ export const limpiarUser = (state) =>{
   }
 
 export const SetError = (state,val) => {
-    state.MsgError = val
-    state.Error = true
+    state.MsgError = val.message
+    state.Error = val.error
   }
 
   export const setInmueble = (state,val) => {
@@ -21,7 +21,7 @@ export const SetError = (state,val) => {
 
   export const setUser = (state,val) => {
     state.user.email = val.email
-    state.idpersona = val.IdPersona
-    state.idrol = val.IdRol
+    state.user.idpersona = val.idpersona
+    state.user.idrol = val.idrol
   }
 

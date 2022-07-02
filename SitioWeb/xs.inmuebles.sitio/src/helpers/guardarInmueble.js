@@ -8,8 +8,6 @@ const guardarInmueble = ({numCredit,deudor,tipoAdq,recObanco,cuentaCat,numFolioR
     ,"m2superficie": "${m2Superficie}","m2construccion": "${m2Construccion}","montoDeuda": "${montoDeuda}"
     ,"montoMin": "${montoMin}","montoVenta": "${montoVenta}","numexpediente": "${numExpJud}"
     ,"comentarioregpub": "${comRegPub}","comentarioexpjudicial": "${comExpJud}","numexpediente": "${numExpJud}"}`
-  
-    console.log(json);
 
    return axios.post('http://localhost/api/inmueble/create.php',
        json,

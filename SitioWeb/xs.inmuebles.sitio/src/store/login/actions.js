@@ -1,6 +1,5 @@
 import validarUsuario from '../../helpers/validarUsuario'
 import setLocalValues from '../../helpers/setLocalValues'
-import guardarInmueblehelper from '../../helpers/guardarInmueble'
 import guardarUsuariohelper from '../../helpers/guardarusuario'
 
 export const login = async ({commit},datos) => {   
@@ -15,31 +14,21 @@ export const login = async ({commit},datos) => {
    }
 }
 
-export const guardarInmueble = async ({commit},inmueble) => {
-  //console.log(inmueble);
-  
-   const {message,error} = await guardarInmueblehelper(inmueble)
-   //console.log(message);
-   //console.log(commit);
-   //console.log(error);
-  if(error){
-    commit('SetError',message)
-  }   
-  else{
-    //console.log(message);
-    commit('setInmueble',inmueble)
-  } 
-}
-
 export const crearusuario = async ({commit},user) => {
   
-   const {message,error} = await guardarUsuariohelper(user)
+   const {data} = await guardarUsuariohelper(user)
+    //console.log(data);
+  
+  // if(error){
+     commit('SetError',data)
+  // }   
+  // else{
+  //   console.log(message);
+  //   //commit('setInmueble',inmueble)
+  // } 
+}
 
-  if(error){
-    commit('SetError',message)
-  }   
-  else{
-    console.log(message);
-    //commit('setInmueble',inmueble)
-  } 
+export const cargarUsuario = async ({commit},user) => {
+  console.log(user);
+  commit('setUser',user)
 }

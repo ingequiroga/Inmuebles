@@ -41,14 +41,19 @@
       </div> 
   </div>
   </form>
+  <Modal v-if="showModal" @close="showModal = false" :Mensaje="MsgError" />
 </div>
   
 </template>
 
 <script>
-import {mapActions} from 'vuex'
+import {mapActions,mapState} from 'vuex'
+import Modal from '../../shared/components/Modal-Confirm.vue';
 
 export default {
+     computed:{
+     ...mapState('login',['Error','MsgError'])
+      },
   data(){
     return{
       user: {
@@ -58,12 +63,15 @@ export default {
         email:'',
         pass:'',
         rol:''
-      }
+      },
+       showModal: false
     }
   },
   methods:{
     async guardarUsuario(){
       await this.Guardaruser(this.user)
+      this.showModal = true
+      this.user = {}
     },
     handleSubmit() {
      this.guardarUsuario()              
@@ -72,6 +80,9 @@ export default {
         Guardaruser: 'crearusuario'
         }) 
 
+  },
+  components:{
+      Modal
   }
 }
 </script>

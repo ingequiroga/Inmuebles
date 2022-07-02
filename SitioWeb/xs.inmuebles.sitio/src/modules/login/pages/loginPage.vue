@@ -1,7 +1,8 @@
 
 <template>
-<div class="text-center bodysi">
-        <main class="form-signin">
+
+  <div class="text-center bodysi">
+        <main class="form-signin" style="back" >
   <form>
     <!-- <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
     <h1 class="h3 mb-3 fw-normal">Inmuebles</h1>
@@ -74,9 +75,10 @@ export default {
 
 <style>
 
-.bodysi {
-  height: 100%;
-}
+/* .bodysi {
+  background: url("../../../assets/fondologin.jpg") no-repeat fixed center;
+  background-size: cover;
+} */
 
 .bodysi {
   display: flex;
@@ -86,7 +88,9 @@ export default {
   background-color: #f5f5f5;
 }
 
- .bd-placeholder-img {
+
+
+ /* .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;
         -webkit-user-select: none;
@@ -98,7 +102,7 @@ export default {
         .bd-placeholder-img-lg {
           font-size: 3.5rem;
         }
-      }
+      } */
 
 
     .form-signin {

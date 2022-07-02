@@ -2,76 +2,56 @@
     <div>
         <h2>Inmuebles</h2>
       <div class="table-responsive">
-        <table class="table table-striped table-sm">
-          <thead>
-            <tr>
-              <th scope="col">Id Inmueble</th>
-              <th scope="col">Deudor</th>
-              <th scope="col">Calle</th>
-              <th scope="col">Municipio</th>
-              <th scope="col">Accion</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1,001</td>
-              <td>random</td>
-              <td>data</td>
-              <td>placeholder</td>
-              <td><button type="button" class="btn btn-primary" >Modificar</button></td>
-            </tr>
-            <tr>
-              <td>1,002</td>
-              <td>placeholder</td>
-              <td>irrelevant</td>
-              <td>visual</td>
-              <td><button type="button" class="btn btn-primary" >Modificar</button></td>
-            </tr>
-            <tr>
-              <td>1,003</td>
-              <td>data</td>
-              <td>rich</td>
-              <td>dashboard</td>
-              <td><button type="button" class="btn btn-primary" >Modificar</button></td>
-            </tr>
-            <tr>
-              <td>1,003</td>
-              <td>information</td>
-              <td>placeholder</td>
-              <td>illustrative</td>
-              <td><button type="button" class="btn btn-primary" >Modificar</button></td>
-            </tr>
-            <tr>
-              <td>1,004</td>
-              <td>text</td>
-              <td>random</td>
-              <td>layout</td>
-              <td><button type="button" class="btn btn-primary" >Modificar</button></td>
-            </tr>
-            <tr>
-              <td>1,005</td>
-              <td>dashboard</td>
-              <td>irrelevant</td>
-              <td>text</td>
-              <td><button type="button" class="btn btn-primary" >Modificar</button></td>
-            </tr>
-            <tr>
-              <td>1,006</td>
-              <td>dashboard</td>
-              <td>illustrative</td>
-              <td>rich</td>
-              <td><button type="button" class="btn btn-primary" >Modificar</button></td>
-            </tr>
-           
-          </tbody>
-        </table>
+          <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Numero de Credito</th>
+                        <th>Deudor</th>
+                        <th>Estado</th>
+                        <th>Municipio</th>
+                        <th>Accion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(inmueble,i) in inmuebles" :key="i">
+                        <td>{{inmueble.NumCredito}}</td>
+                        <td>{{inmueble.Estado}}</td>
+                        <td>{{inmueble.Municipio}}</td>
+                        <td>{{inmueble.Etapa}}</td>
+                        <td>
+                            <input type="checkbox" id="checkbox">    
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
       </div>
     </div>
 </template>
 
 <script>
-export default {
+import axios from 'axios'
 
+export default {
+  data(){
+    return{
+      inmuebles:[]
+    }
+  },
+  methods:{
+      getInmuebles(){
+        axios.get('http://localhost/api/inmueble/readall.php')
+        .then((res) => {
+          if (res.data) {
+              const {datos} = res.data
+              this.inmuebles = datos
+              console.log(datos);                               
+           }
+        });
+      },
+  },
+  mounted(){
+  this.getInmuebles()
+},
 }
 </script>
 
