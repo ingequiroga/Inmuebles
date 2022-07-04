@@ -136,7 +136,7 @@ methods:{
     //     //  }
     //     i++
     // })
-    console.log(this.readedInmuebles)
+    //console.log(this.readedInmuebles)
 },
  ...mapActions('panel',{
         Guardar: 'guardarInmueble'

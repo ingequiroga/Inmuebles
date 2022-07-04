@@ -9,7 +9,8 @@ const guardarInmueble = ({numCredit,deudor,tipoAdq,recObanco,cuentaCat,numFolioR
     ,"montoMin": "${montoMin}","montoVenta": "${montoVenta}","numexpediente": "${numExpJud}"
     ,"comentarioregpub": "${comRegPub}","comentarioexpjudicial": "${comExpJud}","numexpediente": "${numExpJud}"}`
 
-   return axios.post('http://localhost/api/inmueble/create.php',
+   //return axios.post('http://localhost/api/inmueble/create.php',
+   return axios.post(process.env.VUE_APP_RUTA_API+'inmueble/create.php',
        json,
        {headers:  {
          'Content-Type': 'application/json'}

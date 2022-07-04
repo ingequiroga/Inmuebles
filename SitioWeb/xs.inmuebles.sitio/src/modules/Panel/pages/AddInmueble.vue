@@ -172,7 +172,7 @@ export default {
         numFolioReal:'',
         etapaAct: 0,
         comRegPub:'',
-        estado:0,
+        estado: 0,
         municipio: 0,
         calle: '',
         codPostal: '',
@@ -192,13 +192,15 @@ export default {
 methods:{
   async guardar(){
       await this.Guardar(this.inmueble)
+      console.log(this.inmueble);
        if (!this.Error) {
           this.showModal = true
           this.inmueble = {}
         }
   },
   getCatalogos(){
-    axios.get('http://localhost/api/catalogos/readall.php')
+    //axios.get('http://localhost/api/catalogos/readall.php')
+    axios.get(process.env.VUE_APP_RUTA_API+'catalogos/readall.php')
     .then((res) => {
        if (res.data) {
           const {datos} = res.data
@@ -207,7 +209,7 @@ methods:{
     });
   },
   getMunicipios(idestado){
-     axios.post('http://localhost/api/municipios/obtporestados.php',
+     axios.post(process.env.VUE_APP_RUTA_API+'municipios/obtporestados.php',
      {
         estado: idestado,
         headers: [
@@ -228,6 +230,7 @@ methods:{
 watch:{
     selEstado(event){
       console.log(event);
+      this.inmueble.estado = event
      // this.getMunicipios(event)
     }
 },

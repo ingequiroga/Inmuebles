@@ -27,7 +27,7 @@ methods:{
   padding-top: .75rem;
   padding-bottom: .75rem;
   font-size: 1rem;
-  background-color: rgba(0, 0, 0, .25);
+  background-color: #F23545;
   box-shadow: inset 1px 0 0 rgba(0, 0, 0, .25);
 }
 

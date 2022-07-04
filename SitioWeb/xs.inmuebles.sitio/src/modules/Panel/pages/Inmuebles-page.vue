@@ -39,12 +39,12 @@ export default {
   },
   methods:{
       getInmuebles(){
-        axios.get('http://localhost/api/inmueble/readall.php')
+        axios.get(process.env.VUE_APP_RUTA_API+'inmueble/readall.php')
         .then((res) => {
           if (res.data) {
               const {datos} = res.data
               this.inmuebles = datos
-              console.log(datos);                               
+              //console.log(datos);                               
            }
         });
       },

@@ -29,6 +29,6 @@ export const crearusuario = async ({commit},user) => {
 }
 
 export const cargarUsuario = async ({commit},user) => {
-  console.log(user);
+  //console.log(user);
   commit('setUser',user)
 }

@@ -6,7 +6,8 @@ const guardarusuario = ({nombre,apellido,puesto,email,pass,rol}) =>{
   
    // console.log(json);
 
-   return axios.post('http://localhost/api/users/crear.php',
+   //return axios.post('http://localhost/api/users/crear.php',
+   return axios.post(process.env.VUE_APP_RUTA_API+'users/crear.php',
        json,
        {headers:  {
          'Content-Type': 'application/json'}
