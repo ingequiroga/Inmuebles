@@ -192,7 +192,7 @@ export default {
 methods:{
   async guardar(){
       await this.Guardar(this.inmueble)
-      console.log(this.inmueble);
+      //console.log(this.inmueble);
        if (!this.Error) {
           this.showModal = true
           this.inmueble = {}
@@ -229,7 +229,7 @@ methods:{
 },
 watch:{
     selEstado(event){
-      console.log(event);
+      //console.log(event);
       this.inmueble.estado = event
      // this.getMunicipios(event)
     }

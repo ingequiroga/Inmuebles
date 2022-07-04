@@ -6,9 +6,9 @@
                 <thead>
                     <tr>
                         <th>Numero de Credito</th>
-                        <th>Deudor</th>
                         <th>Estado</th>
                         <th>Municipio</th>
+                        <th>Etapa</th>
                         <th>Accion</th>
                     </tr>
                 </thead>
