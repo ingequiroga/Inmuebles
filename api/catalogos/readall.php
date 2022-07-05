@@ -12,6 +12,9 @@ include_once '../objects/estado.php';
 // instantiate etapa object
 include_once '../objects/etapa.php';
 
+// instantiate etapa object
+include_once '../objects/municipio.php';
+
  
 // instantiate database and inmueble object
 $database = new Database();
@@ -20,6 +23,7 @@ $db = $database->getConnection();
 // initialize object
 $estado = new Estado($db);
 $etapa = new Etapa($db);
+$municipio = new Municipio($db);
  
 // read estado will be here
 // query estado
@@ -28,11 +32,14 @@ $numEstado = $stmtEstado->rowCount();
 
 $stmtEtapa = $etapa->read();
 $numEtapa = $stmtEtapa->rowCount();
+
+$stmtMunicipio = $municipio->read();
+$numMunicipio = $stmtMunicipio->rowCount();
  
 $catalogo_arr=array();
 $catalogo_arr["datos"]=array();
 // check if more than 0 record found
-if($numEstado>0 || $numEtapa>0 ){
+if($numEstado>0 || $numEtapa>0 || $numMunicipio>0 ){
     if ($numEstado>0) {
        // estado array
         $estado_arr=array();
@@ -74,6 +81,27 @@ if($numEstado>0 || $numEtapa>0 ){
          array_push($etapa_arr["etapas"], $etapa_item);
      }
      array_push($catalogo_arr["datos"], $etapa_arr["etapas"]);
+     }
+
+     if ($numMunicipio>0) {
+        // etapa array
+         $municipio=array();
+         $municipio_arr["municipios"]=array();
+
+     while ($row = $stmtMunicipio->fetch(PDO::FETCH_ASSOC)){
+         // extract row
+         // this will make $row['name'] to
+         // just $name only
+         extract($row);
+  
+         $municipio_item=array(
+             "Id" => $IdMunicipio,
+             "Nombre" => $Nombre,
+         );
+  
+         array_push($municipio_arr["municipios"], $municipio_item);
+     }
+     array_push($catalogo_arr["datos"], $municipio_arr["municipios"]);
      }
     
  
