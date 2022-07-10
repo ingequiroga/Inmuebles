@@ -8,7 +8,8 @@ class Inmueble{
     // object properties
     public $IdInmueble;
     public $NumCredito;
-    public $Deudor;
+    public $NameDeudor;
+    public $LastDeudor;
     public $TipoAdquisicion;
     public $IdReoBan;
     public $CuentaCat;
@@ -26,6 +27,7 @@ class Inmueble{
     public $NumExpediente;
     public $ComentarioRegPub;
     public $ComentarioExpJudicial;
+    public $EstatusInm;
 
     public $Etapa;
     public $Estado;
@@ -67,12 +69,12 @@ class Inmueble{
         $query =
         "INSERT INTO 
             " . $this->table_name . "
-            (`NumCredito`, `Deudor`, `TipoAdquisicion`, `IdReoBan`, `CuentaCat`, 
+            (`NumCredito`, `NombreDeudor`, `ApellidosDeudor`,`TipoAdquisicion`, `IdReoBan`, `CuentaCat`, 
         `NumFolioReal`, `IdEtapa`, `IdEstado`, `IdMunicipio`, `Calle`, `CodigoPostal`, `M2superficie`, `M2construccion`, 
-        `MontoDeuda`, `MontoMin`, `MontoVenta`,`NumExpediente`, `ComentarioRegPub`, `ComentarioExpJudicial`) 
-        VALUES (:numcredito,:deudor,:tipodquisicion,:idreoban,:cuentacat,:numfolioreal,:idetapa,
+        `MontoDeuda`, `MontoMin`, `MontoVenta`,`NumExpediente`, `ComentarioRegPub`, `ComentarioExpJudicial`,`EstatusInmueble`) 
+        VALUES (:numcredito,:namedeudor,:lastdeudor,:tipodquisicion,:idreoban,:cuentacat,:numfolioreal,:idetapa,
         :idestado,:idmunicipio,:calle,:codigopostal,:m2superficie,:m2construccion,:montoDeuda,:montoMin,:montoVenta,
-        :numexpediente,:comentarioregpub,:comentarioexpjudicial)";
+        :numexpediente,:comentarioregpub,:comentarioexpjudicial,:estatusinm)";
 
         
         //prepare query
@@ -80,7 +82,8 @@ class Inmueble{
      
         // sanitize
         $this->numcredito=htmlspecialchars(strip_tags($this->numcredito));
-        $this->deudor=htmlspecialchars(strip_tags($this->deudor));
+        $this->namedeudor=htmlspecialchars(strip_tags($this->namedeudor));
+        $this->lastdeudor=htmlspecialchars(strip_tags($this->lastdeudor));
         $this->tipodquisicion=htmlspecialchars(strip_tags($this->tipodquisicion));
         $this->idreoban=htmlspecialchars(strip_tags($this->idreoban));
         $this->cuentacat=htmlspecialchars(strip_tags($this->cuentacat));
@@ -95,14 +98,15 @@ class Inmueble{
         $this->montoDeuda=htmlspecialchars(strip_tags($this->montoDeuda));
         $this->montoMin=htmlspecialchars(strip_tags($this->montoMin));
         $this->montoVenta=htmlspecialchars(strip_tags($this->montoVenta));
-
         $this->numexpediente=htmlspecialchars(strip_tags($this->numexpediente));
         $this->comentarioregpub=htmlspecialchars(strip_tags($this->comentarioregpub));
         $this->comentarioexpjudicial=htmlspecialchars(strip_tags($this->comentarioexpjudicial));
+        $this->estatusinm=htmlspecialchars(strip_tags($this->estatusinm));
      
         // bind values
         $stmt->bindParam(":numcredito", $this->numcredito);
-        $stmt->bindParam(":deudor", $this->deudor);
+        $stmt->bindParam(":namedeudor", $this->namedeudor);
+        $stmt->bindParam(":lastdeudor", $this->lastdeudor);
         $stmt->bindParam(":tipodquisicion", $this->tipodquisicion);
         $stmt->bindParam(":idreoban", $this->idreoban);
         $stmt->bindParam(":cuentacat", $this->cuentacat);
@@ -120,6 +124,7 @@ class Inmueble{
         $stmt->bindParam(":numexpediente", $this->numexpediente);
         $stmt->bindParam(":comentarioregpub", $this->comentarioregpub);
         $stmt->bindParam(":comentarioexpjudicial", $this->comentarioexpjudicial);
+        $stmt->bindParam(":estatusinm", $this->estatusinm);
      
      
         // execute query

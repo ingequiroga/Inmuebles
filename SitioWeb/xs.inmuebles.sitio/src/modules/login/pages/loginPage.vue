@@ -3,6 +3,7 @@
 
   <div class="text-center bodysi">
         <main class="form-signin" style="back" >
+        
   <form>
     <img class="mb-4" src="../../../assets/casa.jpg" alt="" width="72" height="57">
     <h1 class="h3 mb-3 fw-normal">Inmuebles</h1>
@@ -26,6 +27,7 @@
   </form>
 </main>
 <ModalA v-if="showModal" @close="showModal = false" :Mensaje="MsgError" />
+<ModalResetPass v-if="showModalresetp" @close="showModalresetp = false" />
 </div>
 
 </template>
@@ -34,6 +36,7 @@
 /* eslint-disable */
 import {mapActions, mapState} from 'vuex'
 import ModalA from '../../shared/components/Modal-Acceso.vue';
+import ModalResetPass from '../../login/components/modalResetPass.vue';
 
 export default {
        computed:{
@@ -44,7 +47,7 @@ export default {
              usuario:'',
              pass:'',
              showModal: false,
-             RecCont: false
+             showModalresetp: false
         } 
     },
     methods:{
@@ -63,12 +66,16 @@ export default {
         }
 
       },
+      RecuperarPass(){
+          this.showModalresetp = true
+      },
        ...mapActions('login',{
         ValidarDatos: 'login'
         }) 
     },
     components:{
-      ModalA
+      ModalA,
+      ModalResetPass
     },
 }
 </script>

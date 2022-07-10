@@ -20,64 +20,83 @@ include_once '../config/database.php';
 // instantiate product object
 include_once '../objects/user.php';
 
+// instantiate product object
+include_once '../objects/solicitudPass.php';
+
 $database = new Database();
 $db = $database->getConnection();
 
 $user = new User($db);
+$solicitud= new SolicitudPass($db);
 
 // get posted data
 $data = json_decode(file_get_contents("php://input"));
 
 // make sure data is not empty
  if(
-     !empty($data->email)
+    !empty($data->email) &&
+    !empty($data->link)&&
+    !empty($data->clave)
  ){ 
 //      // set product user values
       $user->Email = $data->email;
-      $user->sendEmailRecover();
+
+      $solicitud->email = $data->email;
+      $solicitud->clave = $data->clave;
+      $solicitud->expira = $data->expira;
       
-      //echo $user->IdPersona;
+      $user->sendEmailRecover();
       if($user->IdPersona != null){
-        $link = $data->link;  
-        $to = $user->Email;
-        $subject = "Recuperar Password";
 
-        $message = "
-        <html>
-        <head>
-        <title>Recuperar Password</title>
-        </head>
-        <body>
-        <p>Hacer click para recuperar password!</p>
-            <a href=". $link .">Recuperar</a>
-        </body>
-        </html>
-        ";
-
-        // Always set content-type when sending HTML email
-        $headers = "MIME-Version: 1.0" . "\r\n";
-        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-
-        // More headers
-        $headers .= 'From: <webmaster@example.com>' . "\r\n";
-        $headers .= 'Cc: ingequiroga1@gmail.com' . "\r\n";
-
-        mail($to,$subject,$message,$headers);
-
-        http_response_code(201);
-     
-        //         // tell the user
-        echo json_encode(array("message" => "Se envio correo."));
-       
-     }
-     else{
-         // set response code - 503 service unavailable
-         http_response_code(200);
- 
-         // tell the user
-         echo json_encode(array("message" => "no se encontro el email solicitado."));
-     }
-
+        if ($solicitud->create()) {
+      
+                   $link = $data->link;  
+                   $to = $user->Email;
+                   $subject = "Recuperar Password";
+          
+                  $message = "
+                  <html>
+                  <head>
+                  <title>Recuperar Password</title>
+                  </head>
+                  <body>
+                  <p>Hacer click para recuperar password!</p>
+                      <a href=". $link .">Recuperar</a>
+                  </body>
+                  </html>
+                  ";
+          
+                  // Always set content-type when sending HTML email
+                  $headers = "MIME-Version: 1.0" . "\r\n";
+                  $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+          
+                  // More headers
+                  $headers .= 'From: <admin@intradiespi.com>' . "\r\n";
+                  $headers .= 'Cc: ingequiroga1@gmail.com' . "\r\n";
+          
+                  mail($to,$subject,$message,$headers);
+          
+                   http_response_code(201);
+               
+                   //         // tell the user
+                     echo json_encode(array("message" => "Se envio correo electronico.","error" => false));
+                 
+            }
+            else{
+         
+                //     // set response code - 503 service unavailable
+                     http_response_code(503);
+             
+                //     // tell the user
+                    echo json_encode(array("message" => "Unable to create solicitud.","error" => true));
+                  }
+      }
+      else{
+           http_response_code(200);
+   
+           // tell the user
+           echo json_encode(array("message" => "El correo solicitado no esta registrado.","error" => true));
+      }
  }
  else{
  

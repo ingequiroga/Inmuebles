@@ -6,22 +6,31 @@
         <hr class="mt-0">
         <div class="row mt-3">
               <div class="col-md-4">
-              <label class="campo" for="">Número de Crédito</label>
-              <input v-model="inmueble.numCredit" type="text" class="form-control">
-          </div>
-            <div class="col-md-4">
-              <label class="campo" for="">Deudor</label>
-              <input type="text" v-model="inmueble.deudor" class="form-control">
-          </div>
-            <div class="col-md-4">
-              <label class="campo" for="">Tipo de adquisición</label>
-                <select v-model="inmueble.tipoAdq" class="form-select">
-                <option value=1 selected>Recuperadora</option>
-                <option value=2>Banco</option>
-              </select>
-          </div>
+                <label class="campo" for="">Número de Crédito</label>
+                <input v-model="inmueble.numCredit" type="text" class="form-control">
+              </div>
+              <div class="col-md-4">
+                <label class="campo" for="">Nombre Deudor</label>
+                <input type="text" v-model="inmueble.namedeudor" class="form-control">
+              </div>
+
+              <div class="col-md-4">
+                <label class="campo" for="">Apellido Deudor</label>
+                <input type="text" v-model="inmueble.lastdeudor" class="form-control">
+              </div>
+          
+              
       </div>
          <div class="row mt-3">
+
+          <div class="col-md-4">
+                <label class="campo" for="">Tipo de adquisición</label>
+                  <select v-model="inmueble.tipoAdq" class="form-select">
+                  <option value=1 selected>Recuperadora</option>
+                  <option value=2>Banco</option>
+                </select>
+            </div>
+
           <div class="col-md-4">
               <label class="campo" for="">Recuperadora/Banco</label>
                <select v-model="inmueble.recObanco" class="form-select">
@@ -42,17 +51,24 @@
               <label class="campo" for="">Cuenta Catastral</label>
               <input v-model="inmueble.cuentaCat" type="text" class="form-control">
           </div>
-
+           <div class="col-md-4">
+              <label class="campo" >Estatus Inmueble</label>
+                <select v-model="inmueble.estatusinm" class="form-select">
+                <option value='Quebranto'>Quebranto</option>
+                <option value='Terciaria'>Terciaria</option>
+                <option value='Viable'>Viable</option>
+                </select>
+          </div>
         
           
-          <div class="col-md-4">
+          <!-- <div class="col-md-4">
               <label class="campo" >Etapa actual</label>
                <select v-model="inmueble.etapaAct" class="form-select">
                <option v-for="etapa in catalogos[1]" :value="etapa.Id" :key="etapa.Id">
                 {{etapa.Nombre}}
                </option>
                 </select>
-          </div>
+          </div> -->
            
       </div>
     <div class="row mt-3">
@@ -165,12 +181,13 @@ export default {
     return{
       inmueble:{
         numCredit:'',
-        deudor:'',
+        namedeudor:'',
+        lastdeudor:'',
         tipoAdq:'',
         recObanco:'',
         cuentaCat:'',
         numFolioReal:'',
-        etapaAct: 0,
+        etapaAct: 1,
         comRegPub:'',
         estado: 0,
         municipio: 0,
@@ -182,7 +199,8 @@ export default {
         montoMin: 0,
         montoVenta: 0,
         numExpJud: '',
-        comExpJud: ''
+        comExpJud: '',
+        estatusinm:''
       },
       catalogos:[],
       selEstado:null,

@@ -49,6 +49,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "login" */ '../modules/login/pages/loginPage.vue')
   },
   {
+    path: '/resetpass',
+    name: 'resetpass',
+    component: () => import(/* webpackChunkName: "resetpass" */ '../modules/login/pages/resetPass.vue')
+  },
+  {
     path: '/panel',
     beforeEnter : guardMyroute,
     ...panelRouter

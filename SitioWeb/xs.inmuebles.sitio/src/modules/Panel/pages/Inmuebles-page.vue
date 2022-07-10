@@ -19,7 +19,11 @@
                         <td>{{inmueble.Municipio}}</td>
                         <td>{{inmueble.Etapa}}</td>
                         <td>
-                            <input type="checkbox" id="checkbox">    
+                            <a href="#">
+                              <font-awesome-icon icon="fa-solid fa-house-circle-check" />
+                            </a>
+                            
+                      
                         </td>
                     </tr>
                 </tbody>

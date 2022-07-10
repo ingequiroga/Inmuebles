@@ -30,7 +30,8 @@ $data = json_decode(file_get_contents("php://input"));
 // make sure data is not empty
 if(
     !empty($data->numcredito) &&
-    !empty($data->deudor) &&
+    !empty($data->namedeudor) &&
+    !empty($data->lastdeudor) &&
     !empty($data->tipodquisicion) &&
     !empty($data->idreoban)
 ){
@@ -38,7 +39,8 @@ if(
  
     // set inmueble property values
     $inmueble->numcredito = $data->numcredito;
-    $inmueble->deudor = $data->deudor;
+    $inmueble->namedeudor = $data->namedeudor;
+    $inmueble->lastdeudor = $data->lastdeudor;
     $inmueble->tipodquisicion = $data->tipodquisicion;
     $inmueble->idreoban = $data->idreoban;
     $inmueble->cuentacat = $data->cuentacat;
@@ -58,6 +60,7 @@ if(
     $inmueble->numexpediente = $data->numexpediente;
     $inmueble->comentarioregpub = $data->comentarioregpub;
     $inmueble->comentarioexpjudicial = $data->comentarioexpjudicial;
+    $inmueble->estatusinm = $data->estatusinm;
 
    
  
