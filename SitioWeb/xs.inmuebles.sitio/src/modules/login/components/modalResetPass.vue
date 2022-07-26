@@ -65,11 +65,11 @@ export default {
 
        // let link = 'http://localhost:8080/#/resetpass?key='+ result
        let link = process.env.VUE_APP_RUTA_SITIO+'resetpass?key='+ result
-         console.log(link);
+         //console.log(link);
         // console.log(this.email);
         const now = new Date()
         let expiry= now.getTime()+300000
-        console.log(result);
+        //console.log(result);
         //console.log(expiry);
         axios.post(process.env.VUE_APP_RUTA_API+'users/enviarCorreoPass.php',
         {

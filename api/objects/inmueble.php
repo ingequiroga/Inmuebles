@@ -32,12 +32,75 @@ class Inmueble{
     public $Etapa;
     public $Estado;
     public $Municipio;
+
+    public $NombreDeudor;
+    public $ApellidosDeudor;
+    public $NomRec;
+    public $NomEstado;
+    public $NomMunic;
+  
+    //Proceso
+    public $Idadquisicion;
+    public $Idtabsubetapa;
+
+
   
  
     // constructor with $db as database connection
     public function __construct($db){
         $this->conn = $db;
     }
+
+    function readOne(){
+     
+    $query = 
+      "
+      SELECT 
+      `NombreDeudor`,`ApellidosDeudor`,`NumCredito`,rcb.nombre as NomRec,inm.`IdEtapa`, et.Descripcion as Etapa, 
+      inm.`IdEstado`,est.Nombre as NomEstado, inm.`IdMunicipio`,mun.Nombre as NomMunic,inm.Calle, inm.CodigoPostal, inm.M2superficie, inm.M2construccion, 
+      inm.EstatusInmueble 
+      FROM `inmuebles`.`inmueble` inm 
+      INNER JOIN tb_recuperadorabanco rcb ON inm. IdReoBan = rcb.IdEntidad 
+      INNER JOIN tb_etapas et ON et.IdEtapa = inm.IdEtapa
+      INNER JOIN tb_estados est ON inm.IdEstado = est.IdEstado
+      INNER JOIN tb_municipios mun ON mun.IdMunicipio = inm.IdMunicipio
+      WHERE inm.IdInmueble = ?
+      ";        
+   
+      // prepare query statement
+      $stmt = $this->conn->prepare( $query );
+   
+      // bind id of product to be updated
+      //$stmt->bindParam(1, $this->id_usuario);
+      $stmt->bindParam(1, $this->IdInmueble);
+
+     
+      // execute query
+       $stmt->execute();
+       if($stmt->rowCount() > 0){ 
+              // // get retrieved row
+       $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+       //echo $row['idUsuario'];
+   
+       // // set values to object properties
+        $this->NombreDeudor = $row['NombreDeudor'];
+        $this->ApellidosDeudor = $row['ApellidosDeudor'];
+        $this->NumCredito = $row['NumCredito'];
+        $this->NomRec = $row['NomRec'];
+        $this->IdEtapa = $row['IdEtapa'];
+        $this->Etapa = $row['Etapa'];
+        $this->IdEstado = $row['IdEstado'];
+        $this->NomEstado = $row['NomEstado'];
+        $this->IdMunicipio = $row['IdMunicipio'];
+        $this->NomMunic = $row['NomMunic'];
+        $this->Calle = $row['Calle'];
+        $this->CodigoPostal = $row['CodigoPostal'];
+        $this->M2superficie = $row['M2superficie'];
+        $this->M2construccion = $row['M2construccion'];
+        $this->EstatusInm = $row['EstatusInmueble'];
+       }
+  }
 
     // read products
     function read(){
@@ -135,4 +198,23 @@ class Inmueble{
         return false;
          
     }
+
+  
+   
+
+    function getmaxInm(){
+        $qmax = "SELECT MAX(IdInmueble) FROM inmueble";
+    
+        $stmt = $this->conn->prepare($qmax);
+        
+        $stmt->execute();
+        
+        $max = $stmt->fetchColumn();
+    
+       return $max;
+    }
+
+   
+
+
 }

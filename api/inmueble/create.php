@@ -18,11 +18,17 @@ include_once '../config/database.php';
  
 // instantiate product object
 include_once '../objects/inmueble.php';
+include_once '../objects/proceso.php';
+include_once '../objects/subetapa.php';
  
+
 $database = new Database();
 $db = $database->getConnection();
  
 $inmueble = new Inmueble($db);
+$proceso = new Proceso($db);
+$subetapa = new SubEtapa($db);
+
  
 // get posted data
 $data = json_decode(file_get_contents("php://input"));
@@ -66,7 +72,28 @@ if(
  
     // create the product
     if($inmueble->create()){
- 
+        $uinmueble = $inmueble->getmaxInm();
+        // echo $uinmueble;
+         $proceso->IdInmueble = $uinmueble;
+         $proceso->createProceso();
+         $uproceso = $proceso->getmaxproc();
+         $subetapa->Idadquisicion = $uproceso;
+
+        $subetapa->Idtabsubetapa = 1;
+        $subetapa->createSubEtapas();
+        $subetapa->Idtabsubetapa = 2;
+        $subetapa->createSubEtapas();
+        $subetapa->Idtabsubetapa = 3;
+        $subetapa->createSubEtapas();
+        $subetapa->Idtabsubetapa = 4;
+        $subetapa->createSubEtapas();
+        $subetapa->Idtabsubetapa = 5;
+        $subetapa->createSubEtapas();
+        $subetapa->Idtabsubetapa = 6;
+        $subetapa->createSubEtapas();
+        $subetapa->Idtabsubetapa = 7;
+        $subetapa->createSubEtapas();
+        
         // set response code - 201 created
         http_response_code(201);
  

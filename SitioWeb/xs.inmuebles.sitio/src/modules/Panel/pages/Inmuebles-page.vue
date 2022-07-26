@@ -19,7 +19,7 @@
                         <td>{{inmueble.Municipio}}</td>
                         <td>{{inmueble.Etapa}}</td>
                         <td>
-                            <a href="#">
+                            <a @click="iniciarProc(inmueble.IdInmueble)">
                               <font-awesome-icon icon="fa-solid fa-house-circle-check" />
                             </a>
                             
@@ -52,6 +52,10 @@ export default {
            }
         });
       },
+      iniciarProc(id){
+        //console.log(id);
+        this.$router.push('/'+id)
+      }
   },
   mounted(){
   this.getInmuebles()
