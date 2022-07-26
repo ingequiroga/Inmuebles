@@ -20,7 +20,8 @@ export default {
      methods: {
     loadTextFromFile(ev) {
       const file = ev.target.files[0];
-      console.log(file);
+     // console.log(file);
+      var name = file.name
       const reader = new FileReader();
        reader.onload = e => {
       //   var filePreview = document.createElement('img');
@@ -28,11 +29,14 @@ export default {
       //   filePreview.src = e.target.result;
       //    var previewZone = document.getElementById('file-preview-zone'+this.indice);
       //    previewZone.appendChild(filePreview);
-         
-         this.$emit("tratar", e.target.result);
+         let filepdf = {
+          name: name,
+          data: e.target.result
+         }
+         this.$emit("tratar", filepdf);
         
          }
-      // reader.readAsDataURL(file);
+       reader.readAsDataURL(file);
        
     }
   }

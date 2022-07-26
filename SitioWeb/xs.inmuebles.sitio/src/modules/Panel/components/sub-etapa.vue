@@ -16,6 +16,14 @@
                     <div class="col" v-if="datosEtapa.datos.cerrada == 0">
                         <readFile :indice="subetapa.IdTabsubetapa" @tratar="tratarimagenes($event)"/> 
                     </div> 
+                    <div class="col" v-if="datosEtapa.imagenes.length > 0">
+                        <ul>
+                        <li v-for="(imagen,i) in datosEtapa.imagenes" :key="i">
+                            {{imagen.name}}
+                        </li>
+                            
+                        </ul>
+                    </div> 
                      <div class="col text-center" v-if="datosEtapa.datos.cerrada == 1">
                         <h3>Etapa Completada</h3>
                     </div> 
@@ -55,6 +63,7 @@ export default {
     },
     methods:{
       tratarimagenes(event){
+        console.log(event);
       this.datosEtapa.imagenes.push(event)
     },
     FinalizarEtapa(){
