@@ -15,14 +15,16 @@
             </div>
         </div>
         <div v-for="(subetapa,i) in subetapas.datos" :key="subetapa.Id">
-            <subetapa :subetapa="subetapa" :indice="i"></subetapa>
+            <subetapa :subetapa="subetapa" :indice="i" @verimgs="mostrarImagenes($event)"></subetapa>
         </div>
     </div>  
+          <modalImg v-if="showModalimg" @close="showModalimg = false" :imagenes="files"/>
     </div>
 </template>
 
 <script>
 import  subetapa  from '../components/sub-etapa.vue';
+import  modalImg  from '../components/modalArchivos.vue';
 import {mapActions,mapState} from 'vuex'
 import axios from 'axios'
 export default {
@@ -32,7 +34,9 @@ export default {
   data(){
     return{
       proceso: {},
-      subetapas:{}
+      subetapas:{},
+      files:[],
+      showModalimg: false
     }
   },
   methods:{
@@ -48,6 +52,11 @@ export default {
                             }
                         });
      },
+     mostrarImagenes(event){
+        console.log(event);
+        this.files=event
+        this.showModalimg = true
+     },
      ...mapActions('panel',{
         getInmueble: 'getInmueble'
         }) 
@@ -60,7 +69,8 @@ export default {
     },
 
   components:{
-    subetapa
+    subetapa,
+    modalImg
   }  
 }
 </script>
