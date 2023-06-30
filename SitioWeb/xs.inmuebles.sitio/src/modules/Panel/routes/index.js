@@ -41,7 +41,38 @@ export default{
     path: '/banyrec', 
     name: 'BancosyRec',
     component: () => import(/* webpackChunkName: "Administrar Bancos y Recuperadoras  "*/'@/modules/Panel/pages/AddBanyRecPage.vue')   
+<<<<<<< Updated upstream
    }
 
+=======
+    },
+    {
+      path: '/juicios', 
+      name: 'Juicios',
+      component: () => import(/* webpackChunkName: "Proceso de Juicios"*/'@/modules/Panel/pages/JuiciosPage.vue'),   
+     },
+     {
+      path: '/adquisiciones', 
+      name: 'Adquisiciones',
+      component: () => import(/* webpackChunkName: "Inmuebles en Adquisicion"*/'@/modules/Panel/pages/AdquisicionSearch.vue'),   
+     },
+     {
+      path: '/editar/:id', 
+      name: 'EditarInmueble',
+      component: () => import(/* webpackChunkName: "Proceso de Editar Inmuebles  "*/'@/modules/Panel/pages/EditarInmueble.vue'),   
+      props:(route)=>
+      {
+        return {
+          id: route.params.id
+        }
+      }
+    },
+    {
+    path: '/:id/:proceso', 
+    name: 'Adquisicion',
+    component: () => import(/* webpackChunkName: "Proceso de Adquisicion de Inmuebles  "*/'@/modules/Panel/pages/AdquisicionPage.vue'),   
+   },
+   
+>>>>>>> Stashed changes
 ]
 }

@@ -1,0 +1,43 @@
+{
+  "mensaje": "string",
+  "codigo": "string",
+  "completado": true,
+  "dato": [
+    {
+      "login": "001000",
+      "fullName": "Agente Mil HDI",
+      "email": "agente.mil@hdi.com"
+    },
+    {
+        "login": "001001",
+        "fullName": "Agente Mil uno HDI",
+        "email": "agente.miluno@hdi.com"
+      },
+      {
+        "login": "001002",
+        "fullName": "Agente Mil dos HDI",
+        "email": "agente.mildos@hdi.com"
+      },
+      {
+        "login": "001003",
+        "fullName": "Agente Mil tres HDI",
+        "email": "agente.mil@hdi.com"
+      },
+      {
+        "login": "001004",
+        "fullName": "Agente Mil 4 HDI",
+        "email": "agente.milcuatro@hdi.com"
+      },
+      {
+        "login": "001005",
+        "fullName": "Agente Mil 5 HDI",
+        "email": "agente.milcinco@hdi.com"
+      },
+      {
+        "login": "001006",
+        "fullName": "Agente Mil 6 HDI",
+        "email": "agente.milseis@hdi.com"
+      }
+
+  ]
+}

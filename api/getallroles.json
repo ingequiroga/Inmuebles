@@ -1,0 +1,91 @@
+{
+    "mensaje": "Exitoso",
+    "codigo": "IMUSU20001",
+    "completado": true,
+    "dato": [
+        {
+            "roleName": "ACA_AdmAgentesAnalista"
+        },
+        {
+            "roleName": "ACA_AdmAgentesAnalistaBasico"
+        },
+        {
+            "roleName": "ACA_AdmAgentesAnalistaBonos"
+        },
+        {
+            "roleName": "ACA_AdmAgentesAnalistaPrestamos"
+        },
+        {
+            "roleName": "ACA_AdmAgentesAnalista1"
+        },
+        {
+            "roleName": "ACA_AdmAgentesAnalistaBasico2"
+        },
+        {
+            "roleName": "ACA_AdmAgentesAnalistaBonos3"
+        },
+        {
+            "roleName": "ACA_AdmAgentesAnalistaPrestamos4"
+        },
+        {
+            "roleName": "ACA_AdmAgentesAnalista5"
+        },
+        {
+            "roleName": "ACA_AdmAgentesAnalistaBasico6"
+        },
+        {
+            "roleName": "ACA_AdmAgentesAnalistaBonos7"
+        },
+        {
+            "roleName": "ACA_AdmAgentesAnalistaPrestamos8"
+        },
+        {
+            "roleName": "ACA_AdmAgentesAnalista9"
+        },
+        {
+            "roleName": "ACA_AdmAgentesAnalistaBasico10"
+        },
+        {
+            "roleName": "ACA_AdmAgentesAnalistaBonos11"
+        },
+        {
+            "roleName": "ACA_AdmAgentesAnalistaPrestamos12"
+        },
+        {
+            "roleName": "ACA_AdmAgentesAnalista13"
+        },
+        {
+            "roleName": "ACA_AdmAgentesAnalistaBasico14"
+        },
+        {
+            "roleName": "ACA_AdmAgentesAnalistaBonos15"
+        },
+        {
+            "roleName": "ACA_AdmAgentesAnalistaPrestamos16"
+        },
+        {
+            "roleName": "ACA_AdmAgentesAnalista17"
+        },
+        {
+            "roleName": "ACA_AdmAgentesAnalistaBasico18"
+        },
+        {
+            "roleName": "ACA_AdmAgentesAnalistaBonos19"
+        },
+        {
+            "roleName": "ACA_AdmAgentesAnalistaPrestamos20"
+        },
+        {
+            "roleName": "ACA_AdmAgentesAnalista21"
+        },
+        {
+            "roleName": "ACA_AdmAgentesAnalistaBasico22"
+        },
+        {
+            "roleName": "ACA_AdmAgentesAnalistaBonos23"
+        },
+        {
+            "roleName": "ACA_AdmAgentesAnalistaPrestamos24"
+        }
+    ]
+}

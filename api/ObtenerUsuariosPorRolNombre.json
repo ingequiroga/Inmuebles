@@ -1,0 +1,38 @@
+{
+  "mensaje": "string",
+  "codigo": "string",
+  "completado": true,
+  "dato": [
+      {
+        "login": "001005",
+        "email": "agente.milcinco@hdi.com",
+        "fullName": "Agente Mil cinco HDI",
+        "password": "",
+        "passwordFormat": 0,
+        "passwordQuestion": "SISTEMA",
+        "passwordAnswer": "",
+        "isApproved": true,
+        "isLockedOut": true,
+        "isActive": true,
+        "isAvailable": true,
+        "createdDate": "2022-09-27T03:44:57.715Z",
+        "lastLoginDate": "2022-09-27T03:44:57.715Z",
+        "lastActivityDate": "2022-09-27T03:44:57.715Z",
+        "lastPasswordchangedDate": "2022-09-27T03:44:57.715Z",
+        "lastLockoutDate": "2022-09-27T03:44:57.715Z",
+        "failedPwdAttmptCount": 0,
+        "failedPwdAttmptWinStart": "2022-09-27T03:44:57.715Z",
+        "failedPwdAnswAttmpCount": 0,
+        "failedPwdAnswAttmptWinStart": "2022-09-27T03:44:57.715Z",
+        "passwordHistory": "string",
+        "cli_Nip": "string",
+        "td_Id_Desp": "string",
+        "tab_Tipousu": 0,
+        "age_Id": "string",
+        "rutaFirma": "string",
+        "mbs_Sso": "string",
+        "mbs_IsDecline": true,
+        "mbs_IsresetPassword": true
+      }
+  ]
+}

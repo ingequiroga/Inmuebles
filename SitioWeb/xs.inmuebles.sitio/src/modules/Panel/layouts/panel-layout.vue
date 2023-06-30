@@ -19,20 +19,21 @@ import {mapActions} from 'vuex'
 export default {
   mounted(){
     const itemStr = localStorage.getItem('credenciales')
-
     const item = JSON.parse(itemStr)
-
-    
         let userlog ={
          email: item.data.Email,
-         idpersona: item.data.idPersona,
+         idpersona: item.data.IdPersona,
          idrol: item.data.IdRol
         }
-        
+
     this.cargarUsuario(userlog)
+    this.cargarPersona(item.data.IdPersona)
+    this.GetInmuebles()
     },
     methods:{
-       ...mapActions('login',{
+      ...mapActions('panel',{GetInmuebles:'getInmuebles'},),
+      ...mapActions('login',{
+        cargarPersona:'getPersona',
         cargarUsuario: 'cargarUsuario'
         }) 
     },

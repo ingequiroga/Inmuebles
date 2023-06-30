@@ -21,12 +21,16 @@ $table-variants: (
   "dark":       #343a40,
 );
 
-$form-check-input-checked-bg-color:      #006729;
-$form-check-input-checked-border-color:   #006729;
+// $form-check-input-checked-bg-color:      #006729;
+// $form-check-input-checked-border-color:   #006729;
 
 @import 'node_modules/bootstrap/scss/bootstrap.scss';
 
 .pointer{
   cursor: pointer;
+}
+
+.mayuscula {
+  text-transform:uppercase;
 }
 
