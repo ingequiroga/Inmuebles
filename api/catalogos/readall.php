@@ -75,6 +75,31 @@ if($numEstado>0 || $numEtapa>0 ){
      }
      array_push($catalogo_arr["datos"], $etapa_arr["etapas"]);
      }
+<<<<<<< Updated upstream
+=======
+
+     if ($numMunicipio>0) {
+        // etapa array
+         $municipio=array();
+         $municipio_arr["municipios"]=array();
+
+     while ($row = $stmtMunicipio->fetch(PDO::FETCH_ASSOC)){
+         // extract row
+         // this will make $row['name'] to
+         // just $name only
+         extract($row);
+  
+         $municipio_item=array(
+             "Id" => $IdMunicipio,
+             "Nombre" => $Nombre,
+             "IdEstado" => $IdEstado
+         );
+  
+         array_push($municipio_arr["municipios"], $municipio_item);
+     }
+     array_push($catalogo_arr["datos"], $municipio_arr["municipios"]);
+     }
+>>>>>>> Stashed changes
     
  
     

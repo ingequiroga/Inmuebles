@@ -1,0 +1,33 @@
+[
+    {
+        "idusuario": "001000",
+        "Nombre": "Agente Mil HDI",
+        "correo": "agente.mil@hdi.com",
+        "asignado": true
+    },
+    {
+        "idusuario": "001001",
+        "Nombre": "Agente Mil uno HDI",
+        "correo": "agente.miluno@hdi.com",
+        "asignado": false
+    },
+    {
+        "idusuario": "001002",
+        "Nombre": "Agente Mil dos HDI",
+        "correo": "agente.mildos@hdi.com",
+        "asignado": false
+    },
+    {
+        "idusuario": "001003",
+        "Nombre": "Agente Mil tres HDI",
+        "correo": "agente.miltres@hdi.com",
+        "asignado": false
+    },
+    {
+        "idusuario": "001004",
+        "Nombre": "Agente Mil cuatro HDI",
+        "correo": "agente.milcuatro@hdi.com",
+        "asignado": true
+    }
+
+]

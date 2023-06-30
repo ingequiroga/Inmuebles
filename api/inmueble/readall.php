@@ -41,7 +41,9 @@ if($num>0){
             "NumCredito" => $NumCredito,
             "Estado" => $Estado,
             "Municipio" => $Municipio,
-            "Etapa" => $Etapa 
+            "Proceso" => $proceso,
+            "IdProceso" => $IdProceso,
+            "Estatus" => $Estatus
         );
  
         array_push($inmuebles_arr["datos"], $inmueble_item);

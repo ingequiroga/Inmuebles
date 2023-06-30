@@ -84,9 +84,90 @@ class User{
                  AND 
                      Pass='".$this->Pass."'";
      
+<<<<<<< Updated upstream
     // //     // prepare query
         //echo $query;
      $stmt = $this->conn->prepare($query);
+=======
+        // prepare query
+        $stmt = $this->conn->prepare($query);
+
+        $opciones = [
+            'cost' => 12,
+        ];
+        //Secho password_hash($this->Pass, PASSWORD_BCRYPT, $opciones)."\n";
+
+        // sanitize
+        $this->Email=htmlspecialchars(strip_tags($this->Email));
+        $this->Pass=htmlspecialchars(strip_tags(password_hash($this->Pass, PASSWORD_BCRYPT, $opciones)));
+        $this->IdPersona=htmlspecialchars(strip_tags($this->IdPersona));
+        $this->IdRol=htmlspecialchars(strip_tags($this->IdRol));
+
+        
+    
+        // bind values
+        $stmt->bindParam(":email", $this->Email);
+        $stmt->bindParam(":pass", $this->Pass);
+        $stmt->bindParam(":idpersona", $this->IdPersona);
+        $stmt->bindParam(":idrol", $this->IdRol);
+       
+     
+        // execute query
+        if($stmt->execute()){
+             
+      
+            return true;
+        }
+     
+        return false;
+    }
+
+    function changePass(){
+
+        // query to insert record
+        $query = 
+                   "UPDATE " . $this->table_name . " 
+                    SET Pass = :pass
+                    Where idUsuario = :idUsuario
+                    AND Email=:email";
+     
+        // prepare query
+        $stmt = $this->conn->prepare($query);
+
+        $opciones = [
+            'cost' => 12,
+        ];
+        //Secho password_hash($this->Pass, PASSWORD_BCRYPT, $opciones)."\n";
+
+        // sanitize
+        $this->Pass=htmlspecialchars(strip_tags(password_hash($this->Pass, PASSWORD_BCRYPT, $opciones)));
+        $this->idUsuario=htmlspecialchars(strip_tags($this->idUsuario));
+        $this->Email=htmlspecialchars(strip_tags($this->Email));
+
+        
+    
+        // bind values
+        $stmt->bindParam(":pass", $this->Pass);
+        $stmt->bindParam(":idUsuario", $this->idUsuario);
+        $stmt->bindParam(":email", $this->Email);
+       
+     
+        // execute query
+        if($stmt->execute()){
+             
+      
+            return true;
+        }
+     
+        return false;
+    }
+
+
+
+
+
+    function existe(){
+>>>>>>> Stashed changes
      
     // //     // sanitize
     // //     // $this->Email=htmlspecialchars(strip_tags($this->Email));

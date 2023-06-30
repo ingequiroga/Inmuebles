@@ -26,6 +26,12 @@
                Carga Masiva
             </router-link>
           </li>
+           <li class="nav-item">
+            <router-link class="nav-link" to="/juicios">
+               <span data-feather="shopping-cart"></span>
+               Juicios
+            </router-link>
+            </li>
           <li class="nav-item">
             <a class="nav-link" href="#">
               <span data-feather="bar-chart-2"></span>
@@ -33,10 +39,10 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <router-link class="nav-link" to="/adquisiciones">
               <span data-feather="layers"></span>
               Adquisición
-            </a>
+            </router-link>
           </li>
         </ul>  
       </div>

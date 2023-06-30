@@ -4,6 +4,10 @@ export default () => ({
       idpersona:'',
       idrol:''
     },
+    persona:{
+      nombre:'',
+      apellido:''
+    },
     isLoged: false,
     MsgError: '',
     Error: false,
@@ -15,7 +19,8 @@ export default () => ({
     },
     inmueble:{
       numCredit:'',
-      deudor:'',
+      deudorName:'',
+      deudorLast:'',
       tipoAdq:'',
       recObanco:'',
       cuentaCat:'',

@@ -1,5 +1,6 @@
 export const logearUser = (state, val) =>{
-    state.user.email = val.Email
+   console.log(val);
+  state.user.email = val.Email
     state.user.idpersona = val.IdPersona
     state.user.idrol = val.IdRol
     state.isLoged = true 
@@ -23,5 +24,10 @@ export const SetError = (state,val) => {
     state.user.email = val.email
     state.user.idpersona = val.idpersona
     state.user.idrol = val.idrol
+  }
+
+  export const setPersona = (state,val) => {
+    state.persona.nombre = val.Nombre
+    state.persona.apellido = val.Apellido
   }
 

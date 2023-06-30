@@ -1,0 +1,10 @@
+{
+    "mensaje": "Exitoso",
+    "codigo": "IMUSU20001",
+    "completado": true,
+    "dato": [
+        {
+            "roleName": "ACA_AdmAgentesAnalista"
+        }
+    ]
+}
