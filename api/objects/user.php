@@ -11,8 +11,8 @@ class User{
     public $Pass;
     public $IdPersona;
     public $IdRol;
+    public $Hash;
   
-    
     
   
  
@@ -41,12 +41,11 @@ class User{
     function readOne(){
      
           $query = "SELECT
-                   *
+                   idUsuario,Email,IdPersona,IdRol
                 FROM
-                    " . $this->table_name . " u
+                    " . $this->table_name . " 
                 WHERE
-                    p.email = ?
-                AND p.pass = ?
+                    email = ?
                 ";
      
         // prepare query statement
@@ -55,20 +54,24 @@ class User{
         // bind id of product to be updated
         //$stmt->bindParam(1, $this->id_usuario);
         $stmt->bindParam(1, $this->Email);
-        $stmt->bindParam(2, $this->Pass);
-     
+
+       
         // execute query
-        $stmt->execute();
-        
+         $stmt->execute();
+         if($stmt->rowCount() > 0){ 
+                // // get retrieved row
+         $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+         //echo $row['idUsuario'];
      
-        // get retrieved row
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-     
-        // set values to object properties
-        $this->idUsuario = $row['idUsuario'];
-        $this->Email = $row['Email'];
-        $this->IdPersonao = $row['IdPersona'];
-        $this->IdRol = $row['IdRol'];
+         // // set values to object properties
+          $this->idUsuario = $row['idUsuario'];
+          $this->Email = $row['Email'];
+          $this->IdPersonao = $row['IdPersona'];
+          $this->IdRol = $row['IdRol'];
+          $this->IdRol = $row['IdRol'];
+
+         }
     }
 
     // login
@@ -76,19 +79,39 @@ class User{
      
 
          $query = "SELECT 
-                         idUsuario, Email, IdPersona,IdRol  
+                         idUsuario, Email, IdPersona,IdRol,Pass
                    FROM
                      " . $this->table_name . "
                  WHERE
                      Email= '".$this->Email."'
-                 AND 
-                     Pass='".$this->Pass."'";
-     
-<<<<<<< Updated upstream
-    // //     // prepare query
-        //echo $query;
+               ";
+
      $stmt = $this->conn->prepare($query);
-=======
+    
+      $stmt->execute();
+    if($stmt->rowCount() > 0){ 
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    $this->idUsuario = $row['idUsuario'];
+    $this->Email = $row['Email'];
+    $this->IdPersona = $row['IdPersona'];
+    $this->IdRol = $row['IdRol'];
+    $this->Hash = $row['Pass'];
+
+    }
+    
+         
+      }
+
+  
+function create(){
+
+        // query to insert record
+        $query = "INSERT INTO
+                    " . $this->table_name . "
+                SET
+                    Email=:email, Pass=:pass, IdPersona  =:idpersona, IdRol=:idrol";
+     
         // prepare query
         $stmt = $this->conn->prepare($query);
 
@@ -167,23 +190,44 @@ class User{
 
 
     function existe(){
->>>>>>> Stashed changes
      
-    // //     // sanitize
-    // //     // $this->Email=htmlspecialchars(strip_tags($this->Email));
-    // //     // $this->Pass=htmlspecialchars(strip_tags($this->Pass));
+        $query = "SELECT
+                 idUsuario
+              FROM
+                  " . $this->table_name . " 
+              WHERE
+                  email = ?
+              ";
    
+      // prepare query statement
+      $stmt = $this->conn->prepare( $query );
+   
+      // bind id of product to be updated
+      //$stmt->bindParam(1, $this->id_usuario);
+      $stmt->bindParam(1, $this->Email);
+
      
-    // //     // bind values
-    // //    // $stmt->bindParam(":email", $this->Email);
-    // //   //  $stmt->bindParam(":pass", $this->Pass);
-     
-    // //     // execute query
-      $stmt->execute();
-    //   if($stmt->rowCount() > 0){
-    //  // echo $stmt->rowCount();
-    //   return true;
-    //   }
+      // execute query
+       $stmt->execute();
+       if($stmt->rowCount() > 0){ 
+       $row = $stmt->fetch(PDO::FETCH_ASSOC);
+       // // set values to object properties
+        $this->idUsuario = $row['idUsuario'];
+       }
+  }
+
+  function sendEmailRecover(){
+    $query = "SELECT 
+        idUsuario, Email, IdPersona,IdRol,Pass
+    FROM
+    " . $this->table_name . "
+    WHERE
+    Email= '".$this->Email."'
+    ";
+
+    $stmt = $this->conn->prepare($query);
+
+    $stmt->execute();
     if($stmt->rowCount() > 0){ 
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -191,9 +235,11 @@ class User{
     $this->Email = $row['Email'];
     $this->IdPersona = $row['IdPersona'];
     $this->IdRol = $row['IdRol'];
+    $this->Hash = $row['Pass'];
 
     }
-      //return $stmt;
-         
-      }
+
+  }
+
+
 }
