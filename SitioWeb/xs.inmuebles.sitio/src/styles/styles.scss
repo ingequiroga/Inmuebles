@@ -1,0 +1,32 @@
+$theme-colors: (
+  "primary":    #275D8C,
+  "secondary":  #F23545,
+  "success":    #BBD94E,
+  "info":       #F2D022,
+  "warning":    #F27B35,
+  "danger":     #dc3545,
+  "light":      #f8f9fa,
+  "dark":       #343a40,
+  "verdehdi":   #088364
+);
+
+$table-variants: (
+  "primary":    #275D8C,
+  "secondary":  #F23545,
+  "success":    #BBD94E,
+  "info":       #F2D022,
+  "warning":    #F27B35,
+  "danger":     #dc3545,
+  "light":      #f8f9fa,
+  "dark":       #343a40,
+);
+
+$form-check-input-checked-bg-color:      #006729;
+$form-check-input-checked-border-color:   #006729;
+
+@import 'node_modules/bootstrap/scss/bootstrap.scss';
+
+.pointer{
+  cursor: pointer;
+}
+
