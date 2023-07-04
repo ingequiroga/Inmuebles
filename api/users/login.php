@@ -42,20 +42,43 @@ $data = json_decode(file_get_contents("php://input"));
 
       //echo $user->IdPersona;
       if($user->IdPersona != null){
-        
-        $user_arr = array(
-            "idUsuario" =>  $user->idUsuario,
-            "Email" => $user->Email,
-            "IdPersona" => $user->IdPersona,
-            "IdRol" => $user->IdRol,
-            "message" => "Acceso concedido",
-            "error" => false
-        );
-         // set response code - 201 created
-         http_response_code(201);
- 
-//         // tell the user
-        echo json_encode($user_arr);
+        //echo $user->Hash;
+         if (password_verify($user->Pass, $user->Hash)) 
+         {
+            $user_arr = array(
+                "idUsuario" =>  $user->idUsuario,
+                "Email" => $user->Email,
+                "IdPersona" => $user->IdPersona,
+                "IdRol" => $user->IdRol,
+                "message" => "Acceso concedido",
+                "error" => false
+            );
+             // set response code - 201 created
+             http_response_code(201);
+     
+    //         // tell the user
+            echo json_encode($user_arr);
+         }
+         else{
+
+            $user_arr = array(
+                "idUsuario" =>  '',
+                "Email" => '',
+                "IdPersona" => '',
+                "IdRol" => '',
+                "message" => "usuario o pass incorrectos.",
+                "error" => true
+         
+            );
+             // set response code - 503 service unavailable
+             http_response_code(200);
+     
+             // tell the user
+             echo json_encode($user_arr);
+            // echo json_encode(array("message" => "usuario o pass incorrectos."));
+
+         }
+       
      }
      else{
 
@@ -69,7 +92,7 @@ $data = json_decode(file_get_contents("php://input"));
      
         );
          // set response code - 503 service unavailable
-         //http_response_code(503);
+         http_response_code(200);
  
          // tell the user
          echo json_encode($user_arr);
